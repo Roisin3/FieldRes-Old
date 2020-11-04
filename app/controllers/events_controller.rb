@@ -11,12 +11,9 @@ class EventsController < ApplicationController
     end
 
     def create
-        Event.create(event_params)
-        #if @event.exists?
-        redirect_to '/events/show'
-#        else
-#            render 'new'
-        #end
+        @event = Event.create(event_params)
+        @event.save
+        render 'events/show'
     end
 
     def show
