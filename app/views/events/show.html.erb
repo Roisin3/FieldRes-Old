@@ -1,0 +1,19 @@
+<h2><%= @event.title %></h2>
+
+<h2><%= @event.start %></h2>
+
+<h2><%= @event.finish %></h2>
+
+<h2>
+    <%= @event.requirements.each do |reqs| %>
+        Field <%= reqs.field %>
+        <br>
+        Goal size: <%= reqs.goals %>
+        <br>
+        # of Food Trucks: <%= reqs.food_truck %>
+        <br>
+        Suggested Trucks: <%= reqs.other %>
+        <br>
+    <% end %>
+</h2>
+

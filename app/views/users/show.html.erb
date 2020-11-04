@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<% if flash[:message] %></p>
+    <div class="center alert">
+        <p><%= flash[:message] %></p>
+    </div>
+<% end %>
+
+<div class='center'>
+
+    <div class='info'>
+        <p><strong>Name:</strong> <%= @user.name %></p>
+        <p><strong>Email:</strong> <%= @user.email %></p>
+        <p><strong>Phone:</strong> <%= @user.phone_number %></p>
+        <a href='/events/new'>Create Event</a>
+        <a href='/logout'>Log Out</a>
+    </div>
+</div>
