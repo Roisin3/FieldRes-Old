@@ -1,12 +1,12 @@
-<h2><%= @event.title %></h2>
+<h2>Event: <%= @event.title %></h2>
 
-<h2><%= @event.start %></h2>
+<h2>Start Date and Time: <%= @event.start %></h2>
 
-<h2><%= @event.finish %></h2>
+<h2>end date and Time: <%= @event.finish %></h2>
 
 <h2>
     <%= @event.requirements.each do |reqs| %>
-        Field <%= reqs.field %>
+        Field: <%= reqs.field %>
         <br>
         Goal size: <%= reqs.goals %>
         <br>
@@ -16,4 +16,7 @@
         <br>
     <% end %>
 </h2>
+
+<a href="/events/edit">Edit Event</a>
+
 

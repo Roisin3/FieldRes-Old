@@ -11,7 +11,9 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Event.create(event_params)
+        @event = Event.new(event_params)
+        @event.user_id = current_user.id
+        #byebug
         @event.save
         render 'events/show'
     end
@@ -21,8 +23,7 @@ class EventsController < ApplicationController
     end
 
     def edit
-        @event = Event.find_by(id: params[:id])
-        
+        @event = Event.find_by(id: params[:id])        
     end
 
     def update
@@ -38,9 +39,9 @@ class EventsController < ApplicationController
 
         def event_params
             params.require(:event).permit(
-                :start, :finish, :title,
+                :start, :finish, :title, :user_id, 
                 requirements_attributes: [
-                    :id, :field, :goals, :food_truck, :other, :empty_field
+                    :field, :goals, :food_truck, :other, :empty_field, :event_id, :user_id
                 ]
             )
         end
