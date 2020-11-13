@@ -24,6 +24,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'reservation'
 
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'dotenv-rails'
+
 # gem 'pry', '~> 0.13.1'
 
 # Use Active Storage variant

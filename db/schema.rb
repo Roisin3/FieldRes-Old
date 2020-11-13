@@ -36,16 +36,6 @@ ActiveRecord::Schema.define(version: 2020_10_26_191032) do
     t.index ["user_id"], name: "index_requirements_on_user_id"
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer "event_id"
-    t.string "subject_type"
-    t.integer "subject_id"
-    t.string "status"
-    t.string "role"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"

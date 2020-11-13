@@ -6,15 +6,16 @@ class EventsController < ApplicationController
     end
 
     def new
-        @event = Event.new
+        @event = Event.new(:user_id => params[:user_id])
         @event.requirements.build
+        
     end
 
     def create
-        @event = Event.new(event_params)
+        @event = Event.create(event_params)
         @event.user_id = current_user.id
-        #byebug
-        @event.save
+      #  byebug
+        @event.save!
         render 'events/show'
     end
 
@@ -33,6 +34,9 @@ class EventsController < ApplicationController
     end
 
     def destroy
+        event = Event.find_by(id: params[:id])
+        event.delete
+        redirect_to '/events'
     end
 
     private

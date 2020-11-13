@@ -5,4 +5,6 @@
     <h1 align='center'>Welcome to the County Soccer Complex!</h1>
 </div>
 
-<p><a href='/signin'>Login</a> or <a href='/users/new'>Create User</a>
+<%= link_to "Sign Up", "/signup" %><br>
+<%= link_to "Sign In", "/signin" %><br>
+<%= link_to 'Sign in with Github', auth_github_callback_path %>
