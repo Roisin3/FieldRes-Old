@@ -1,7 +1,7 @@
 <h1>Edit User</h1>
 
 
- <%= form_for (@user = User.find_by(id: params[:id])) do |f| %>
+ <%= form_for @user do |f| %>
 
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     # if 
       (user = User.create(user_params))
       session[:user_id] = user.id
+      user.save
       redirect_to user_path(user)
     # else
     #   user = User.create_with(:uid => auth['uid']) do |u|
@@ -29,13 +30,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])        
+    @user = User.find_by(id: current_user.id)        
   end
 
   def update
       @user = User.find_by(id: params[:id])
-      user.update(user_params)
-      redirect_to user_path(user.id)
+      @user.update(user_params)
+      redirect_to user_path(@user.id)
   end
 
 
