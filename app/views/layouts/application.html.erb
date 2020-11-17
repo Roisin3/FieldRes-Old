@@ -12,4 +12,9 @@
   <body>
     <%= yield %>
   </body>
+  <br>
+  <br>
+  <footer style='position: fixed, left: 0, bottom: 0'>
+    <%= link_to 'Logout', '/session', method: 'delete'%>
+  </footer>
 </html>

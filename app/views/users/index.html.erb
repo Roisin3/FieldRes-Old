@@ -1,0 +1,10 @@
+<h2>User Page</h2>
+
+
+<%= link_to 'Events', '/events' %> <%= link_to 'Edit User', '/users/:id/edit' %>
+
+    <p><strong>Name:</strong> <%= @user.name %></p>
+    <p><strong>Email:</strong> <%= @user.email %></p>
+    <p><strong>Phone:</strong> <%= @user.phone_number %></p>
+
+<%= render 'layouts/footer' %>

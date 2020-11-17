@@ -1,10 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h2>User Page</h2>
 
-<% if flash[:message] %></p>
-    <div class="center alert">
-        <p><%= flash[:message] %></p>
-    </div>
-<% end %>
+
+<%= link_to 'Events', '/events' %> <%= link_to 'Edit User', '/users/:id/edit' %>
 
 <div class='center'>
 
@@ -12,7 +9,7 @@
         <p><strong>Name:</strong> <%= @user.name %></p>
         <p><strong>Email:</strong> <%= @user.email %></p>
         <p><strong>Phone:</strong> <%= @user.phone_number %></p>
-        <a href='/events/new'>Create Event</a>
-        <a href='/logout'>Log Out</a>
     </div>
 </div>
+
+<%= render 'layouts/footer' %>

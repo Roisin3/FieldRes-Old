@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   post '/session', to: 'session#create', as: 'session'
   delete '/session', to: 'session#destroy'
 
-  
+  get '/auth/facebook/callback' => 'users#create'
 
-  match '/auth/github/callback', to: 'session#create', via: [:get, :post]
+  get '/users/:id', to: 'users#show'
+  get '/users/:id/edit', to: 'users#edit'
+  post '/users/:id/edit', to: 'users#update'
 
   resources :sessions
   resources :static

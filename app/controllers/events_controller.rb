@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
     def index
         @events = Event.all
+
     end
 
     def new
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
     end
 
     def edit
-        @event = Event.find_by(id: params[:id])        
+        @event = Event.find_by(id: params[:id])       
     end
 
     def update
@@ -49,6 +50,8 @@ class EventsController < ApplicationController
                 ]
             )
         end
+
+        
 
 
 end

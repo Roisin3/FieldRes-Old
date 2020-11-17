@@ -7,13 +7,3 @@
 
 <%= link_to "Sign Up", "/signup" %><br>
 <%= link_to "Sign In", "/signin" %><br>
-
-<% if name = session[:name] %>
-    <p>Welcome <%= name %>!</p>
-    <p>Authd by <%= session[:omniauth_data]['provider'] %></p>
-    <pre>
-    <%= session[:omniauth_data] %>
-    </pre>
-<% else %>
-    <%= link_to('Login with Facebook', '/auth/facebook') %>
-<% end %>

@@ -1,0 +1,22 @@
+<h1>Edit User</h1>
+
+
+ <%= form_for (@user = User.find_by(id: params[:id])) do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <br>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+    <br>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, class: 'form-control' %>
+    <br>
+
+    <div class="actions">
+         <%= f.submit class: "btn btn-primary" %>
+     </div>
+ <% end %>
+
+
+<%= render 'layouts/footer' %>

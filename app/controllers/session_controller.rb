@@ -6,26 +6,12 @@ class SessionController < ApplicationController
     end
 
     def create
-        if auth
-            @user = User.find_or_create_by(:uid => auth['uid']) do |u|
-                u.name = auth['info']['nickname']
-                u.email = auth['info']['email']
-                u.password = SecureRandom.uuid
-                u.uid = auth['uid']
-            end
-            session[:user_id] = @user.id
-            redirect to user_path(@user)
-        else
-            @user = User.find_by(email: params[:email])
-            if @user.nil?
-                render :new
-            else
-                return head(:forbidden) unless @user.authenticate(params[:password])
-                session[:user_id] = @user.id
-                redirect_to user_path(@user)
-            end
-        end
+        @user = User.find_by(email: params[:email])
+        return head(:forbidden) unless @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
     end
+    
 
     def destroy
         session.delete("user_id")
