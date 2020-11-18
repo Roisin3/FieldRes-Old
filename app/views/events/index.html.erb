@@ -15,8 +15,6 @@
     <% end %>
 </table>
 
-
-#This is awful and I hate it. There has to be abetterway to do this
 <%= @events.map do |e| %>
     <%= link_to "Profile", "users/#{e.user_id}" %>
     <% break %>

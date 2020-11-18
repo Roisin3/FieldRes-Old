@@ -10,19 +10,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    # if 
+    if 
+      user = User.create_with(:uid => auth['uid']) do |u|
+        u.name = auth['info']['name']
+        u.email = auth['info']['email']
+        session[:user_id] = user.try(:id)
+        redirect_to user_path(@user)
+      end
+    else
       (user = User.create(user_params))
       session[:user_id] = user.id
       user.save
-      redirect_to user_path(user)
-    # else
-    #   user = User.create_with(:uid => auth['uid']) do |u|
-    #     u.name = auth['info']['name']
-    #     u.email = auth['info']['email']
-    #     session[:user_id] = user.try(:id)
-    #     redirect_to user_path(@user)
-    #   end
-    #end
+      redirect_to user_path(@user)
+    end
   end
 
   def show
