@@ -1,20 +1,28 @@
 class SessionController < ApplicationController
-    skip_before_action :verified_user, only: [:new, :create]
+   skip_before_action :unverified_user, only: [:new, :create]
 
     def new
         @user = User.new
     end
 
     def create
-        if auth_hash = request.env['omniauth.auth']
-            @user = User.find_or_create_by_omniauth(auth_hash)
-            session[:user_id] = @user.id
-        else
-            @user = User.find_by(email: params[:email])
-        end
+        @user = User.find_by(email: params[:email])
+        return head(:forbidden) unless @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        @user.save!
-        render '/users/show'
+        redirect_to user_path(@user)
+    end
+
+    def omniauth
+        user = User.from_omniauth(auth)
+
+        if user.valid?
+            login(user)
+            flash[:success] = "Successfully logged in via #{auth[:provider]}"
+            redirect_to user_path(user)
+        else
+            flash[:danger] = user.errors.full_message.join(", ")
+            redirect_to '/'
+        end
     end
     
 

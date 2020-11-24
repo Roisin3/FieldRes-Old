@@ -1,21 +1,19 @@
 class EventsController < ApplicationController
-    before_action :verified_user
+    before_action :unverified_user, except: [:index]
 
     def index
         @events = Event.all
-
     end
 
     def new
         @event = Event.new(:user_id => params[:user_id])
-        @event.requirements.build
-        
+        @event.requirements.build        
     end
 
     def create
         @event = Event.create(event_params)
         @event.user_id = current_user.id
-      #  byebug
+        byebug
         @event.save!
         render 'events/show'
     end
@@ -44,9 +42,9 @@ class EventsController < ApplicationController
 
         def event_params
             params.require(:event).permit(
-                :start, :finish, :title, :user_id, 
+                :start, :finish, :title, :user_id,
                 requirements_attributes: [
-                    :field, :goals, :food_truck, :other, :empty_field, :event_id, :user_id
+                   :field, :goals, :food_truck, :other, :empty_field, :event_id, :user_id
                 ]
             )
         end

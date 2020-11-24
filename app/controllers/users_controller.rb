@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verified_user, only: [:new, :create]
+  skip_before_action :unverified_user, only: [:new, :create, :omniauth, :auth]
 
   def index
     @user = User.find_by(id: params[:id])
@@ -10,19 +10,22 @@ class UsersController < ApplicationController
   end
 
   def create
-    if 
-      user = User.create_with(:uid => auth['uid']) do |u|
-        u.name = auth['info']['name']
-        u.email = auth['info']['email']
-        session[:user_id] = user.try(:id)
-        redirect_to user_path(@user)
-      end
-    else
-      (user = User.create(user_params))
-      session[:user_id] = user.id
-      user.save
-      redirect_to user_path(@user)
-    end
+    (user = User.new(user_params))
+    session[:user_id] = user.id
+    render 'users/show'
+  end
+
+  def omniauth
+    @user = User.find_or_initialize_by(
+      email: auth[:info][:email], 
+      name: auth[:info][:name], 
+      password_digest: SecureRandom.hex(10), 
+      phone_number: auth['info']['phone'], 
+      uid: auth[:uid]
+      )
+      session[:user_id] = @user.id
+      @user.save
+    render 'users/show'
   end
 
   def show
@@ -46,6 +49,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(
           :name, :password, :email, :phone_number, :uid
           )
+  end
+
+  def auth
+    request.env['omniauth.auth']
   end
 
 end

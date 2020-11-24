@@ -7,20 +7,23 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
 
   post '/session', to: 'session#create', as: 'session'
-  delete '/session', to: 'session#destroy';
+  delete '/session', to: 'session#destroy'
 
-  get '/auth/facebook/callback' => 'session#create'
+  get '/auth/facebook/callback' => 'users#omniauth'
 
   get '/users/:id', to: 'users#show'
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update'
 
-  resources :sessions
+  resources :session
   resources :static
-  resources :users
+  resources :users do
+    resources :events
+  end
 
-  resources :events
+  resources :events do
     resources :requirements
+  end
 
 
 end  
