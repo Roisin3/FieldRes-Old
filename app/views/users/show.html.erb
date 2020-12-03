@@ -1,7 +1,7 @@
 <h2>User Page</h2>
 
 
-<%= link_to 'Events', new_event_path %> <%= link_to 'Edit User', '/users/:id/edit' %>
+<%= link_to 'Events', new_event_path %> <%= link_to 'Edit User', "/users/#{@user.id}/edit" %>
 
 <div class='center'>
 
@@ -11,5 +11,7 @@
         <p><strong>Phone:</strong> <%= @user.phone_number %></p>
     </div>
 </div>
+
+<%= link_to "DELETE ACCOUNT", @user, method: 'delete' %>
 
 <%= render 'layouts/footer' %>

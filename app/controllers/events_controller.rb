@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-    before_action :unverified_user, except: [:index]
-
     def index
         @events = Event.all
     end

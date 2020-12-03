@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   post '/session', to: 'session#create', as: 'session'
   delete '/session', to: 'session#destroy'
+  get '/session/logout', to: 'session#destroy'
 
   get '/auth/facebook/callback' => 'users#omniauth'
 
@@ -17,12 +18,19 @@ Rails.application.routes.draw do
 
   resources :session
   resources :static
+
+  resources :fields do
+    resources :requirements
+  end
+
   resources :users do
     resources :events
   end
 
   resources :events do
-    resources :requirements
+    resources :fields do
+      resources :requirements
+    end
   end
 
 

@@ -5,9 +5,6 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.datetime :finish
       t.string :title
       t.belongs_to :user
-      t.belongs_to :field_1
-      t.belongs_to :field_2
-      t.belongs_to :field_3
 
       t.timestamps
     end

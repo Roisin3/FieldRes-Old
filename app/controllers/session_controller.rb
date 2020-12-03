@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-   skip_before_action :unverified_user, only: [:new, :create]
+   # skip_before_action :verified_user, only: [:new, :create]
 
     def new
         @user = User.new
@@ -10,21 +10,7 @@ class SessionController < ApplicationController
         return head(:forbidden) unless @user.authenticate(params[:password])
         session[:user_id] = @user.id
         redirect_to user_path(@user)
-    end
-
-    def omniauth
-        user = User.from_omniauth(auth)
-
-        if user.valid?
-            login(user)
-            flash[:success] = "Successfully logged in via #{auth[:provider]}"
-            redirect_to user_path(user)
-        else
-            flash[:danger] = user.errors.full_message.join(", ")
-            redirect_to '/'
-        end
-    end
-    
+    end    
 
     def destroy
         session.delete("user_id")
