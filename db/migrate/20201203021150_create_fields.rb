@@ -1,7 +1,7 @@
 class CreateFields < ActiveRecord::Migration[6.0]
   def change
     create_table :fields do |t|
-      t.string :
+      t.string :name
       t.belongs_to :event
 
       t.timestamps

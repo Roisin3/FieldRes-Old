@@ -2,18 +2,17 @@
 
 <h2>Start Date and Time: <%= @event.start %></h2>
 
-<h2>end date and Time: <%= @event.finish %></h2>
+<h2>End date and Time: <%= @event.finish %></h2>
+
+<h2><%= Field.where("event_id = ?", @event.id) %></h2>
+
 
 <h2>
-    <%= @event.requirements.each do |reqs| %>
-        Field: <%= reqs.field %>
-        <br>
-        Goal size: <%= reqs.goals %>
-        <br>
-        Number of Food Trucks: <%= reqs.food_truck %>
-        <br>
-        Suggested Trucks: <%= reqs.other %>
-        <br>
+    <%= @event.fields.each do |f| %>
+        Field: <%= f.name  %>
+        <%= f.requirements.each do |reqs| %>
+            Goals: <%= reqs.goals %>
+        <% end %>
     <% end %>
 </h2>
 

@@ -1,4 +1,5 @@
-class Requirement < ApplicationRecord
-    belongs_to :field
+class Requirement < ActiveRecord::Base
+    belongs_to :field, optional: true
+
 
 end

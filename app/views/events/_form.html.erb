@@ -10,23 +10,24 @@
         <h2><%= f.label :finish %></h2>
         <%= f.datetime_field :finish, class: 'form-control' %>
         <br>
-        <%= f.fields_for :requirements do |reqs| %>
+        <%= f.fields_for :fields do |field| %>
+            <h2><%= field.label "Field Number" %></h2>
+            <%= field.select :name, ['1', '2', '3'] %>
             <br>
-            <h2><%= reqs.label "Field Number" %></h2>
-            <%= reqs.select :field, ['1', '2', '3'] %>
-            <br>
-            <h2><%= reqs.label "Goals" %></h2>
-            <%= reqs.select :goals, ['8 x 24', '7 x 21', '4 x 6']  %>
-            <br>
-            <h2><%= reqs.label "Food Truck" %></h2>
-            <%= reqs.select :food_truck, ['0', '1', '2', '3', '4'] %>
-            <br>
-            <%= reqs.label "Truck suggestions:" %>
-            <%= reqs.text_field :other %>
-            <br>
-            <h3><%= reqs.label "No field requirements:" %></h3>
-            <%= reqs.check_box :empty_field, {}, true, false %>
-            <br>
+            <%= field.fields_for :requirements do |reqs| %>
+                <h2><%= reqs.label "Goals" %></h2>
+                <%= reqs.select :goals, ['8 x 24', '7 x 21', '4 x 6']  %>
+                <br>
+                <h2><%= reqs.label "Food Truck" %></h2>
+                <%= reqs.select :food_truck, ['0', '1', '2', '3', '4'] %>
+                <br>
+                <%= reqs.label "Truck suggestions:" %>
+                <%= reqs.text_field :other %>
+                <br>
+                <h3><%= reqs.label "No field requirements:" %></h3>
+                <%= reqs.check_box :empty_field, {}, true, false %>
+                <br>
+            <% end %>
         <% end %>
     </div>
 

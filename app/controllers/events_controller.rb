@@ -5,14 +5,14 @@ class EventsController < ApplicationController
 
     def new
         @event = Event.new(:user_id => params[:user_id])
-        @event.requirements.build        
+        @event.fields.build.requirements.build
     end
 
     def create
         @event = Event.create(event_params)
         @event.user_id = current_user.id
-        byebug
         @event.save!
+        byebug
         render 'events/show'
     end
 
@@ -41,10 +41,13 @@ class EventsController < ApplicationController
         def event_params
             params.require(:event).permit(
                 :start, :finish, :title, :user_id,
-                requirements_attributes: [
-                   :field, :goals, :food_truck, :other, :empty_field, :event_id, :user_id
-                ]
-            )
+                    fields_attributes: [
+                        :name, :event_id,
+                            requirements_attributes: [
+                                :goals, :food_truck, :other, :empty_field, :field_id
+                            ]
+                        ]
+                )
         end
 
         
