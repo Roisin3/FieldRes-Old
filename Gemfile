@@ -28,6 +28,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
+gem 'validates_overlap'
+
 # gem 'pry', '~> 0.13.1'
 
 # Use Active Storage variant

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_021150) do
   end
 
   create_table "fields", force: :cascade do |t|
-    t.string "name"
+    t.string "field_name"
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -4,12 +4,10 @@
 
 <h2>End date and Time: <%= @event.finish %></h2>
 
-<h2><%= Field.where("event_id = ?", @event.id) %></h2>
-
 
 <h2>
     <%= @event.fields.each do |f| %>
-        Field: <%= f.name  %>
+        Field: <%= f.field_name  %>
         <%= f.requirements.each do |reqs| %>
             Goals: <%= reqs.goals %>
         <% end %>
@@ -18,6 +16,7 @@
 
 <%= link_to 'Edit Event', edit_event_path(@event) %><br>
 <%= link_to 'Your Events', '/events' %><br>
+<% byebug %>
 
 <%= render 'layouts/footer' %>
 

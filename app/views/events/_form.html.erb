@@ -12,7 +12,7 @@
         <br>
         <%= f.fields_for :fields do |field| %>
             <h2><%= field.label "Field Number" %></h2>
-            <%= field.select :name, ['1', '2', '3'] %>
+            <%= field.select :field_name, ['1', '2', '3'] %>
             <br>
             <%= field.fields_for :requirements do |reqs| %>
                 <h2><%= reqs.label "Goals" %></h2>

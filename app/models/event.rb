@@ -11,11 +11,13 @@ class Event < ActiveRecord::Base
 #
 #
 #
-    def exclusive_field
-        field_arr = []        
-        field_arr << Field.where("name == 1").find_each
+    # def exclusive_field
+    #     field_arr = []        
+    #     field_arr << Field.where("name == 1").find_each
+    #     field_arr
         
-    end
-        
+    # end
+
+   
 
 end
