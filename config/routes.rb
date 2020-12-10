@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update'
 
+  get '/events/new', to: 'events#new'
+  get '/events/show', to: 'events#show'
+
   resources :session
   resources :static
 

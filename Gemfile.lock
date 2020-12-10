@@ -89,9 +89,6 @@ GEM
     hashie (4.1.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    icalendar (2.7.0)
-      ice_cube (~> 0.16)
-    ice_cube (0.16.3)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     jwt (2.2.2)
@@ -170,10 +167,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.8.2)
-    reservation (0.1.0)
-      activerecord (>= 4.0)
-      icalendar
-      rails (>= 4.0)
     ruby2_keywords (0.0.2)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
@@ -209,6 +202,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.8)
       thread_safe (~> 0.1)
+    validates_overlap (1.0.0)
+      rails (>= 6.0.0)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -244,7 +239,6 @@ DEPENDENCIES
   omniauth-facebook
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
-  reservation
   sass-rails (>= 6)
   selenium-webdriver
   spring
@@ -252,6 +246,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
+  validates_overlap
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
