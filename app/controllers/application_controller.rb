@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #  before_action :verified_user
+    before_action :verified_user
     helper_method :current_user
 
     private
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_is_authenticated
-        current_user
+        !!current_user
     end
 
     def current_user

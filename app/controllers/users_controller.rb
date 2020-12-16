@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- # skip_before_action :verified_user, only: [:new, :create]
+  skip_before_action :verified_user, only: [:new, :create, :omniauth]
 
   def index
     @user = User.find_by(id: params[:id])
@@ -16,28 +16,21 @@ class UsersController < ApplicationController
     render 'users/show'
   end
 
-  def create
-    @user = User.new(user_params)
-    @user.save
-    session[:user_id] = @user.id
-    redirect_to user_path(@user)
+  def omniauth
+    @user = User.find_or_initialize_by(
+        email: auth['info']['email']
+      )
+    if !@user.email
+      @user.name = auth['info']['name']
+      @user.email = auth['info']['email']
+      @user.password = SecureRandom.hex(10)
+      @user.phone_number = auth['info']['phone']
+      @user.uid = auth['uid']
+    end
+      @user.save!
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
   end
-
-  # def omniauth
-  #   @user = User.find_or_initialize_by(
-  #       email: auth['info']['email']
-  #     )
-  #   if !@user.email
-  #     @user.name = auth['info']['name']
-  #     @user.email = auth['info']['email']
-  #     @user.password = SecureRandom.hex(10)
-  #     @user.phone_number = auth['info']['phone']
-  #     @user.uid = auth['uid']
-  #   end
-  #     @user.save
-  #     session[:user_id] = @user.id
-  #     redirect_to user_path(@user)
-  # end
 
   def omniauth
     @user = User.find_or_initialize_by(

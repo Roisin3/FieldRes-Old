@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
+  get '/', to: 'static#home'
+
   get '/signin', to: 'session#new', as: 'signin'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'

@@ -4,5 +4,10 @@ class Event < ActiveRecord::Base
     has_many :fields
     accepts_nested_attributes_for :fields
         
+    
+    scope :field_finder, ->(field_name) { joins(:fields).where("fields.name == ?", field_name )}
+    
+
+   
 
 end

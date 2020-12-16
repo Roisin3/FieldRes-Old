@@ -29,7 +29,6 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
 
-
 # gem 'pry', '~> 0.13.1'
 
 # Use Active Storage variant
