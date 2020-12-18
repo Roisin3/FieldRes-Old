@@ -12,8 +12,11 @@ class UsersController < ApplicationController
   def create
     (@user = User.new(user_params))
     session[:user_id] = @user.id
-    @user.save!
-    render 'users/show'
+    if @user.save!
+      render 'users/show'
+    else
+      flash[:notice] = "Please make sure all fields are filled correctly."
+    end
   end
 
   def omniauth

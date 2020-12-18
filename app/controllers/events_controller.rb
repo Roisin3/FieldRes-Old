@@ -14,7 +14,6 @@ class EventsController < ApplicationController
         @event.user_id = current_user.id
         if exclusive_field == nil
             @event.save!
-            flash[:message] = "Field Reserved"
             redirect_to events_path(@event)
         else
             flash[:notice] = "Another event has already reserved this field."

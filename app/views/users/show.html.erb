@@ -1,17 +1,19 @@
-<h2>User Page</h2>
+<h1>Welcome, <%= @user.name %>!</h1>
 
+<div class='top_links'>
+<h2><%= link_to 'Your Events', user_events_path(@user) %> <%= link_to 'Create Event', events_new_path %> <%= link_to 'Edit User', edit_user_path(@user) %></h2>
+</div>
 
-<%= link_to 'Create Event', events_new_path %> <%= link_to 'Edit User', "/users/#{@user.id}/edit" %>
+<div>
 
-<div class='center'>
-
-    <div class='info'>
+    <div class='user_info'>
         <p><strong>Name:</strong> <%= @user.name %></p>
         <p><strong>Email:</strong> <%= @user.email %></p>
         <p><strong>Phone:</strong> <%= @user.phone_number %></p>
     </div>
 </div>
 
-<%= link_to "DELETE ACCOUNT", @user, method: 'delete' %>
-
 <%= render 'layouts/footer' %>
+
+
+<%= link_to "DELETE ACCOUNT", @user, method: 'delete' %>

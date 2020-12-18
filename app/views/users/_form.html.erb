@@ -1,33 +1,30 @@
+<% if flash[:notice] %>
+
+        <div class="notice" style="color:red;text-align:center;font-weight:bold;"><%= flash[:notice] %></div><br>
+
+<% end %>
 <%= form_for @user do |f| %>
-    <div id='error_explanation'>
-    <h2>
-        <%= pluralize(@user.errors.count, 'error') %> prohibitied this event form being created:</h2>
-
-        <ul>
-        <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-        </ul>
-
-    </div>
-
 
     <div class='form-group'>
-        <%= f.label :name %>
+        <strong><%= f.label :name %></strong>
         <%= f.text_field :name, class: 'form-control' %>
         <br>
-        <%= f.label :email %>
+        <strong><%= f.label :email %></strong>
         <%= f.text_field :email, class: 'form-control' %>
         <br>
-        <%= f.label :phone_number %>
+        <strong><%= f.label :phone_number %></strong>
         <%= f.text_field :phone_number, class: 'form-control' %>
         <br>
-        <%= f.label :password %>
+        <strong><%= f.label :password %></strong>
         <%= f.password_field :password, class: 'form-control' %>
         <br>
+
+        <div class="actions">
+            <%= f.submit class: "btn btn-primary" %>
+        </div>
     </div>
 
-    <div class="actions">
-        <%= f.submit class: "btn btn-primary" %>
-    </div>
+    
 <% end %>
+
+<p>If you already have an account <%= link_to "Sign in here.", 'signin' %>

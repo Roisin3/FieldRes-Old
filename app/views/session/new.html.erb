@@ -1,17 +1,22 @@
+<h1>Sign In</h1>
+<div class="create_user;style=text-align:center;">
 <%= form_tag('/session', method: :post) do %>
-    <div class="form-group">
-        <%= label_tag(:email, "Email") %>
 
-        <%= text_field_tag(:email) %>
-    </div>
+    <strong><%= label_tag(:email, "Email") %></strong>
+    <%= text_field_tag(:email) %><br><br>
 
-    <div class="form-group">
-        <%= label_tag(:password, "Your password:") %>
-        <%= password_field_tag(:password, nil, class: "form-control") %>
-    </div>
+
+    <strong><%= label_tag(:password, "Your password:") %></strong>
+    <%= password_field_tag(:password, nil) %><br><br>
 
 
     <div class="actions">
-        <%= submit_tag("Sign In") %><br>
+        <%= submit_tag("Sign In") %>
     </div>
+
+
+    <p>Don't have an account? <%= link_to "Create one here!", '/signup' %></p>
+    
 <% end %>
+
+</div>
