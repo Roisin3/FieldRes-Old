@@ -1,22 +1,30 @@
-<h2>Event: <%= @event.title %></h2>
+<h1> Your Scheduled Events </h1>
 
-<h2>Start Date and Time: <%= @event.start %></h2>
-
-<h2>End Date and Time: <%= @event.finish %></h2>
-
-
-<h2>
-    <%= @event.fields.each do |f| %>
-        Field: <%= f.name  %>
-        <%= f.requirements.each do |reqs| %>
-            Goals: <%= reqs.goals %>
-        <% end %>
+<table class='table'>
+    <div class='headers'>
+        <tr>
+            <td><strong>Title</strong></td>
+            <td><strong>Start Time</strong></td>
+            <td><strong>End Time</strong></td>
+            <td><strong>Field Number</strong></td>
+            <td><strong>Goals</strong></td>
+            <td><strong>Number of Food Trucks</strong></td>
+            <td><strong></strong></td>
+        </tr>
+    </div>
+    
+    <%= @events.each do |event| %>
+        <tr>
+            <td><strong><%= link_to "#{event.title}", edit_event_path(event.id) %></strong></td>
+            <td><%= event.start %></td>
+            <td><%= event.finish %></td>
+            <td><%= Field.find_by(id: event.id).name %></td>
+            <td><%= Requirement.find_by(id: event.id).goals %></td>
+            <td><%= Requirement.find_by(id: event.id).food_truck %></td>
+        </tr>
     <% end %>
-</h2>
+</table><br>
 
-<%= link_to 'Edit Event', edit_event_path(@event) %><br>
-<%= link_to 'Your Events', '/events' %><br>
+<%= link_to "User Page", user_path(current_user.id) %>
 
-<%= render 'layouts/footer' %>
-
-
+<a href="/events/new">New Event</a>

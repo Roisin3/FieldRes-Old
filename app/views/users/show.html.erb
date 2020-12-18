@@ -1,7 +1,7 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 
 <div class='top_links'>
-<h2><%= link_to 'Your Events', user_events_path(@user) %> <%= link_to 'Create Event', events_new_path %> <%= link_to 'Edit User', edit_user_path(@user) %></h2>
+<h2><%= link_to 'Your Events', event_path(@user) %> <%= link_to 'Create Event', events_new_path %> <%= link_to 'Edit User', edit_user_path(@user) %></h2>
 </div>
 
 <div>

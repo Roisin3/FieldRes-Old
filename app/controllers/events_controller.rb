@@ -22,11 +22,11 @@ class EventsController < ApplicationController
     end
 
     def show
-        @event = Event.find_by(id: params[:id])
+        @events = Event.user_id_finder(current_user)
     end
 
     def edit
-        @event = Event.find_by(id: params[:id])       
+        @event = Event.find_by(id: params[:id])    
     end
 
     def update

@@ -64,13 +64,14 @@ class UsersController < ApplicationController
   def update
       @user = User.find_by(id: params[:id])
       @user.update(user_params)
+      @user.save
       redirect_to user_path(@user.id)
   end
 
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
-    redirect_to '/static/home'
+    redirect_to '/'
   end
 
 
