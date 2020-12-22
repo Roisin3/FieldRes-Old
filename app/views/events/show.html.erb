@@ -16,8 +16,8 @@
     <%= @events.each do |event| %>
         <tr>
             <td><strong><%= link_to "#{event.title}", edit_event_path(event.id) %></strong></td>
-            <td><%= event.start %></td>
-            <td><%= event.finish %></td>
+            <td><%= event.start.strftime("%m/%d/%Y at %I:%M%p") %></td>
+            <td><%= event.finish.strftime("until %m/%d/%Y at %I:%M%p") %></td>
             <td><%= Field.find_by(id: event.id).name %></td>
             <td><%= Requirement.find_by(id: event.id).goals %></td>
             <td><%= Requirement.find_by(id: event.id).food_truck %></td>

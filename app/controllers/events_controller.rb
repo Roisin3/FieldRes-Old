@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
     def index
-        @events = Event.all
+        @events = Event.user_id_finder(current_user)
     end
 
     def new
