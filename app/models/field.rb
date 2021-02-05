@@ -1,9 +1,9 @@
 class Field < ActiveRecord::Base
-    belongs_to :events, optional: true
+    belongs_to :requirement, optional: true
 
     
-    has_many :requirements
-    accepts_nested_attributes_for :requirements
+    # has_many :requirements
+    # accepts_nested_attributes_for :requirements
 
 
 

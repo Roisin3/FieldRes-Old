@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 2020_12_03_021150) do
 
   create_table "fields", force: :cascade do |t|
     t.string "name"
-    t.integer "event_id"
+    t.integer "requirement_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_fields_on_event_id"
+    t.index ["requirement_id"], name: "index_fields_on_requirement_id"
   end
 
   create_table "requirements", force: :cascade do |t|
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 2020_12_03_021150) do
     t.integer "food_truck"
     t.text "other"
     t.boolean "empty_field"
-    t.integer "field_id"
+    t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["field_id"], name: "index_requirements_on_field_id"
+    t.index ["event_id"], name: "index_requirements_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|

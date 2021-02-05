@@ -4,7 +4,9 @@
 
 <% end %>    
 
-<%= form_for @event do |f| %>    
+<%= form_for @event do |f| %>
+    
+    
 
     <div class='form-group'>
         <h2><%= f.label :title %></h2>
@@ -16,12 +18,8 @@
         <h2><%= f.label :finish %></h2>
         <%= f.datetime_field :finish, class: 'form-control' %>
         <br>
-        <%= f.fields_for :fields do |field| %>
-            <h2><%= field.label "Field Number" %></h2>
-            <%= field.select :name, ['1', '2', '3'] %>
-            <br>
-            <%= field.fields_for :requirements do |reqs| %>
-                <h2><%= reqs.label "Goals" %></h2>
+        <%= f.fields_for :requirements do |reqs| %>
+            <%= reqs.label "Goals" %></h2>
                 <%= reqs.select :goals, ['8 x 24', '7 x 21', '4 x 6']  %>
                 <br>
                 <h2><%= reqs.label "Food Truck" %></h2>
@@ -33,9 +31,13 @@
                 <h3><%= reqs.label "No field requirements:" %></h3>
                 <%= reqs.check_box :empty_field, {}, true, false %>
                 <br>
-            <% end %>
+                <h2><%= reqs.fields_for :fields do |field| %>
+                    <h2><%= field.label "Field Number" %></h2>
+                    <%= field.select :name, ['1', '2', '3'] %>
+                    <br>
+                <% end %>
         <% end %>
-    </div>
+     </div>
 
     <div class="actions">
         <h2><%= f.submit class: "btn btn-primary" %></h2>

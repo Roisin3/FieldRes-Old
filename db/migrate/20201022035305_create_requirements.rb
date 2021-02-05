@@ -5,7 +5,7 @@ class CreateRequirements < ActiveRecord::Migration[6.0]
       t.integer :food_truck
       t.text :other
       t.boolean :empty_field
-      t.belongs_to :field
+      t.belongs_to :event
       
 
       t.timestamps

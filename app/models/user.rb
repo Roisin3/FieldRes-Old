@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     validates :email, uniqueness: true
     
     has_many :events
-    has_many :fields, through: :events
-    has_many :requirements, through: :fields  
+    has_many :requirements, through: :events
+    has_many :fields, through: :requirements
 
 end
